@@ -1,7 +1,6 @@
 // require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
-const { text } = require("stream/consumers");
 
 // создание папки
 // fs.mkdirSync(path.resolve(__dirname, "newDir"));
