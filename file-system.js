@@ -48,7 +48,9 @@ const path = require("path");
 //   }
 // });
 
-// Создание Promise-обертки
+// ============================================
+
+// функция-обертка для создания файла на промисах
 const writeFileAsync = async (path, data) => {
   return new Promise((resolve, reject) =>
     fs.writeFile(path, data, (err) => {
@@ -60,7 +62,7 @@ const writeFileAsync = async (path, data) => {
   );
 };
 
-// Создание Promise-обертки
+// функция-обертка для дозаписи в файл на промисах
 const appendFileAsync = async (path, data) => {
   return new Promise((resolve, reject) =>
     fs.appendFile(path, data, (err) => {
@@ -73,8 +75,32 @@ const appendFileAsync = async (path, data) => {
 };
 
 // вызов writeFileAsync для создания + appendFileAsync x3 для записи
-writeFileAsync(path.resolve(__dirname, "text.txt"), "start")
-  .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "123"))
-  .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "456"))
-  .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "789"))
-  .catch((err) => console.log(err.message));
+// writeFileAsync(path.resolve(__dirname, "text.txt"), "start")
+//   .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "123"))
+//   .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "456"))
+//   .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "789"))
+//   .catch((err) => console.log(err.message));
+
+// ============================================
+
+// функция чтения файла на промисах
+const readFileAsync = async (path) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, { encoding: "utf-8" }, (err, data) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(data);
+    });
+  });
+};
+
+// вызов writeFileAsync для создания + appendFileAsync x3 для записи + readFileAsync чтение
+// writeFileAsync(path.resolve(__dirname, "text.txt"), "start")
+//   .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "111"))
+//   .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "222"))
+//   .then(() => appendFileAsync(path.resolve(__dirname, "text.txt"), "333"))
+//   .then(() => readFileAsync(path.resolve(__dirname, "text.txt")))
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err.message));
+
