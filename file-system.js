@@ -1,6 +1,7 @@
 // require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
+const { text } = require("stream/consumers");
 
 // создание папки
 // fs.mkdirSync(path.resolve(__dirname, "newDir"));
@@ -104,3 +105,17 @@ const readFileAsync = async (path) => {
 //   .then((data) => console.log(data))
 //   .catch((err) => console.log(err.message));
 
+// ============================================
+
+const removeFileAsync = async (path) => {
+  return new Promise((resolve, reject) => {
+    fs.rm(path, (err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
+    });
+  });
+};
+
+removeFileAsync(path.resolve(__dirname, "text.txt"));
