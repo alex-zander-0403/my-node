@@ -21,11 +21,29 @@ fs.mkdir(path.resolve(__dirname, "newDir"), (err) => {
 
 // ============================================
 
-// удаление
+// удаление директории
 fs.rmdir(path.resolve(__dirname, "newDir"), (err) => {
   if (err) {
     console.log(err.message);
     return;
   }
   console.log("Папка удалена");
+});
+
+// ============================================
+
+// создание и/или запись/перезапись в файл
+fs.writeFile(path.resolve(__dirname, "text.txt"), "hello, world!", (err) => {
+  if (err) {
+    console.log("Файл записан");
+    return;
+  }
+});
+
+// дозапись
+fs.appendFile(path.resolve(__dirname, "text.txt"), "added text", (err) => {
+  if (err) {
+    console.log("Файл обновлен");
+    return;
+  }
 });
