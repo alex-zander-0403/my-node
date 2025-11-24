@@ -118,4 +118,4 @@ const removeFileAsync = async (path) => {
   });
 };
 
-removeFileAsync(path.resolve(__dirname, "text.txt"));
+
