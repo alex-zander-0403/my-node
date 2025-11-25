@@ -1,20 +1,25 @@
-// require("dotenv").config();
+const EventEmitter = require("events");
+// Создаем экземпляр EventEmitter
+const emitter = new EventEmitter();
 
-const Emitter = require("events");
-const emitter = new Emitter();
-
-// пользовательское событие message
-emitter.on("message", (data, second) => {
-  console.log("Сообщение: " + data);
-  console.log("Второй аргумент: " + second);
+// Подписываемся на событие "message"
+emitter.on("message", (first, second) => {
+  console.log(`Сообщение: ${first}`);
+  console.log(`Второй аргумент: ${second}`);
 });
 
-const MESSAGE = process.env.MESSAGE || "";
+// ============================================
 
-if (MESSAGE) {
-  emitter.emit("message", MESSAGE, 123);
+const FIRST_ARG = process.env.FIRST_ARG || "";
+const SECOND_ARG = process.env.SECOND_ARG || undefined;
+
+// Генерируем событие
+if (FIRST_ARG) {
+  emitter.emit("message", FIRST_ARG, SECOND_ARG);
 } else {
-  emitter.emit("message", "нет сообщения");
+  emitter.emit("message", "сообщение не указано");
 }
 
-// MESSAGE="мое сообщение в консоли" node events.js
+// FIRST_ARG="мое сообщение в консоли" SECOND_ARG=123 node events.js
+// Сообщение: мое сообщение в консоли
+// Второй аргумент: 123
