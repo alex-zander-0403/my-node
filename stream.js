@@ -39,12 +39,25 @@ const path = require("path");
 
 // =============== Writable ===============
 
-const writableStream = fs.createWriteStream(
-  path.resolve(__dirname, "text2.txt")
-);
+// const writableStream = fs.createWriteStream(
+//   path.resolve(__dirname, "text2.txt")
+// );
 
-for (let i = 0; i < 25; i++) {
-  writableStream.write(i + "\n");
-}
+// for (let i = 0; i < 25; i++) {
+//   writableStream.write(i + "\n");
+// }
 
-writableStream.end();
+// writableStream.end();
+
+// =============== HTTP ===============
+
+const http = require("http");
+
+const PORT = process.env.PORT || 5000;
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "content-type": "text/html; charset=utf-8" }); // для отображения кириллицы
+  res.end("Сервер работает!");
+});
+
+server.listen(PORT, () => console.log(`Сервер запущен: ${PORT}`));
