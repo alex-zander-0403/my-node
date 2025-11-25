@@ -51,13 +51,13 @@ const path = require("path");
 
 // =============== HTTP ===============
 
-const http = require("http");
+// const http = require("http");
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { "content-type": "text/html; charset=utf-8" }); // для отображения кириллицы
-  res.end("Сервер работает!");
-});
+// const server = http.createServer((req, res) => {
+//   res.writeHead(200, { "content-type": "text/html; charset=utf-8" }); // для отображения кириллицы
+//   res.end("Сервер работает!");
+// });
 
-server.listen(PORT, () => console.log(`Сервер запущен: ${PORT}`));
+// server.listen(PORT, () => console.log(`Сервер запущен: ${PORT}`));
